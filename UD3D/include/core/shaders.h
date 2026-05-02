@@ -1,11 +1,11 @@
 #pragma once
 
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <cstddef>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "utils/glm_includes.h"
 
 struct Shader
 {
@@ -25,4 +25,5 @@ struct Shader
 	void SetVec2(const std::string& name, const glm::vec2& value);
 	void SetInt(const std::string& name, int value);
 	void SetFloat(const std::string& name, float value);
+	void SetMat4Array(const std::string& name, const glm::mat4* matrices, std::size_t count);
 };

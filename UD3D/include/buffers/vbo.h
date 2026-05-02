@@ -8,8 +8,11 @@ class VBO
 {
 public:
 	GLuint ID;
-	VBO(std::vector<Vertex> vertices);
 
+	VBO();
+	VBO(const std::vector<Vertex>& vertices);
+
+	void Init(GLsizeiptr size, GLenum usage);
 	void Bind();
 	void Unbind();
 	void Delete();

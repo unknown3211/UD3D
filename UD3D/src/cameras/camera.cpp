@@ -1,5 +1,5 @@
 #include "cameras/camera.h"
-#include <glm/gtc/matrix_transform.hpp>
+#include "utils/glm_includes.h"
 
 const glm::vec3 Camera::worldUp{ 0.0f, 1.0f, 0.0f };
 

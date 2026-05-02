@@ -8,12 +8,14 @@
 #include "shaders.h"
 #include "textures.h"
 #include "cameras/camera.h"
+#include "lighting.h"
+#include "utils/glm_includes.h"
 
 class Model
 {
 public:
 	Mesh* LoadFromFile(const std::string& filePath, const char* vertShader, const char* fragShader, const char* texturePath, GLenum format, Camera* camera, glm::vec3 position, glm::vec3 size);
-	void Draw();
+	void Draw(const Lighting& light);
 	void Shutdown();
 private:
 	std::vector<Mesh*> meshes;

@@ -1,12 +1,13 @@
 #include "audio/sound.h"
 #include <algorithm>
+#include "logs.h"
 
 Sound::Sound() : sd(nullptr), att(AL_NONE)
 {
 	sd = LISTENER->Get();
 	if (!sd)
 	{
-		//Log(error, "Failed To Load Sound !");
+		Log(error, "Failed To Load Sound !");
 	}
 }
 
@@ -39,7 +40,7 @@ void Sound::Play(int soundID)
 	}
 	else
 	{
-		//Log(error, "No Sound Loaded !");
+		Log(error, "No Sound Loaded !");
 	}
 }
 

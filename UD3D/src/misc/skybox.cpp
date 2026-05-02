@@ -4,10 +4,6 @@
 #include "buffers/ebo.h"
 #include <stb_image.h>
 
-/// <summary>
-///  THIS SHIT NEEDS FIXING, SOME ARE FLIPPED CAUSING SKYBOX TO BE FUCKED ///
-/// </summary>
-
 void Skybox::Load(const std::string faces[6])
 {
     stbi_set_flip_vertically_on_load(false);
@@ -63,9 +59,9 @@ void Skybox::Load(const std::string faces[6])
 
 void Skybox::Draw(int width, int height, Shader& shader, Camera& camera)
 {
-    glDepthFunc(GL_LEQUAL);
-    glDepthMask(GL_FALSE);
-    glDisable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LESS);
 
     shader.Bind();
 
@@ -77,13 +73,12 @@ void Skybox::Draw(int width, int height, Shader& shader, Camera& camera)
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+    
     shader.SetInt("skybox", 0);
 
     vao->Bind();
+    
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    
     vao->Unbind();
-
-    glEnable(GL_CULL_FACE);
-    glDepthMask(GL_TRUE);
-    glDepthFunc(GL_LESS);
 }

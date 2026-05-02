@@ -1,8 +1,8 @@
 #pragma once
 
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
 #include "camera.h"
+#include "utils/glm_includes.h"
 
 class FCamera
 {

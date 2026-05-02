@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/glm.hpp>
+#include "utils/glm_includes.h"
 
 class Camera
 {

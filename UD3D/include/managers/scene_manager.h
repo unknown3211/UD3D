@@ -2,19 +2,21 @@
 
 #include "core/mesh.h"
 #include "core/model.h"
+#include "core/lighting.h"
 #include "cameras/camera.h"
 
 class SceneManager
 {
 public:
-	void Draw();
+	void Update(float deltaTime);
+	void Draw(const Lighting& light);
 	void Shutdown();
 	void AddMesh(Mesh* mesh);
 	void AddModel(Model* model);
 	void debugMode(bool debugmode);
-	bool getDebugMode() { return debug; }
+	bool getDebugMode() const { return debug; }
 private:
-	bool debug;
 	std::vector<Mesh*> meshes;
 	std::vector<Model*> models;
+	bool debug;
 };

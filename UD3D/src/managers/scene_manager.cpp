@@ -1,12 +1,19 @@
 #include "managers/scene_manager.h"
 
-void SceneManager::Draw()
+void SceneManager::Update(float deltaTime)
+{
+	for (auto model : models)
+	{
+	}
+}
+
+void SceneManager::Draw(const Lighting& light)
 {
 	for (auto mesh : meshes)
-		mesh->Draw();
+		mesh->Draw(light);
 
 	for (auto model : models)
-		model->Draw();
+		model->Draw(light);
 }
 
 void SceneManager::Shutdown()

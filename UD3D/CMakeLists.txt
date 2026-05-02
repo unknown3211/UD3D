@@ -28,6 +28,10 @@ set(ASSIMP_BUILD_OBJ_IMPORTER ON CACHE BOOL "" FORCE)
 set(ASSIMP_BUILD_FBX_IMPORTER ON CACHE BOOL "" FORCE)
 set(ASSIMP_BUILD_GLTF_IMPORTER ON CACHE BOOL "" FORCE)
 
+if(NOT MY_SOURCES)
+    message(FATAL_ERROR "No source files found in UD3D/src/")
+endif()
+
 FetchContent_Declare(
     json
     URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
@@ -43,9 +47,15 @@ FetchContent_Declare(
     URL https://github.com/assimp/assimp/archive/refs/tags/v6.0.2.zip
 )
 
+FetchContent_Declare(
+    pugixml
+    URL https://github.com/zeux/pugixml/archive/refs/tags/v1.15.zip
+)
+
 FetchContent_MakeAvailable(json)
 FetchContent_MakeAvailable(sol2)
 FetchContent_MakeAvailable(assimp)
+FetchContent_MakeAvailable(pugixml)
 
 add_subdirectory(libs/glad)
 add_subdirectory(libs/glfw-3.4)
@@ -56,6 +66,7 @@ add_subdirectory(libs/libsndfile)
 add_subdirectory(libs/freetype)
 add_subdirectory(libs/lua)
 add_subdirectory(libs/imgui-docking)
+add_subdirectory(libs/SimpleLogs)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
   glad   
@@ -70,4 +81,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
   sol2
   assimp
   imgui
+  SimpleLogs
+  pugixml
 )

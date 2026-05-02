@@ -1,8 +1,6 @@
 #pragma once
 
 #include <glad/glad.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <vector>
 #include "shaders.h"
 #include "textures.h"
@@ -11,6 +9,8 @@
 #include "buffers/ebo.h"
 #include "globals/global_structs.h"
 #include "cameras/camera.h"
+#include "lighting.h"
+#include "utils/glm_includes.h"
 
 class Mesh
 {
@@ -20,9 +20,10 @@ public:
 	
 	~Mesh();
 
-	void Draw();
+	void Draw(const Lighting& light);
 	void SetPosition(const glm::vec3& position) { m_pos = position; }
 	void SetSize(const glm::vec3& size) { m_size = size; }
+
 	const Texture* GetTexture() const { return texture.get(); }
 	const Shader& GetShader() const { return shader; }
 private:

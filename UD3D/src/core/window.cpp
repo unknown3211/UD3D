@@ -30,7 +30,7 @@ void Window::CreateWindow(const WindowDetails& details)
     monitor = glfwGetPrimaryMonitor();
     videoMode = glfwGetVideoMode(monitor);
 
-    window = glfwCreateWindow(videoMode->width, videoMode->height, wd.title.c_str(), NULL, NULL); // do monitor instead of first NULL if want fullscreen
+    window = glfwCreateWindow(wd.s_width, wd.s_height, wd.title.c_str(), NULL, NULL); // do monitor instead of first NULL if want fullscreen
     if (window == NULL)
     {
         //Log(error, "Failed To Initialize GLFW Window");
@@ -51,7 +51,9 @@ void Window::CreateWindow(const WindowDetails& details)
         enableReportGlErrors();
 
     glViewport(0, 0, details.s_width, details.s_height);
-    glEnable(GL_DEPTH_TEST);
+
+    bgColor = { 74.f, 120.f, 139.f, 255.f }; // light blue
+    SetBackgroundColor(bgColor);
 
     glfwSwapInterval(details.vSync ? 1 : 0);
 }
@@ -62,6 +64,7 @@ void Window::Update(void(*update)())
     {
         ResizeWindow(window);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
         update();
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -78,7 +81,7 @@ void Window::Shutdown(void(*shutdown)())
 void Window::SetBackgroundColor(const Color& color)
 {
     bgColor = color;
-    glClearColor(color.r, color.g, color.b, color.a);
+    glClearColor(color.r / 255, color.g / 255, color.b / 255, color.a / 255);
 }
 
 void Window::ResizeWindow(GLFWwindow* window)

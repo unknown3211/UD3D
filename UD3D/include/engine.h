@@ -4,6 +4,7 @@
 #include "core/mesh.h"
 #include "core/model.h"
 #include "core/shapes.h"
+#include "core/lighting.h"
 
 #include "buffers/vao.h"
 #include "buffers/vbo.h"
@@ -13,9 +14,11 @@
 #include "cameras/free_cam.h"
 
 #include "managers/scene_manager.h"
+#include "managers/config_manager.h"
+#include "managers/ui_manager.h"
 
-#include "scripting/lua_scripts.h"
-#include "scripting/lua_functions.h"
+#include "scripting/lua/lua_scripting.h"
+#include "scripting/lua/lua_functions.h"
 
 #include "globals/global_structs.h"
 #include "globals/global_types.h"
@@ -26,9 +29,13 @@
 #include "audio/sound_effects.h"
 #include "audio/sound.h"
 
+#include "utils/udmath.h"
 #include "utils/utils.h"
 #include "utils/timer.h"
 #include "utils/gl_errors.h"
 #include "utils/windowsapi.h"
+#include "utils/glm_includes.h"
 
 #include "misc/skybox.h"
+
+#include "ui/components/ui_text.h"

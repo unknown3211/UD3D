@@ -1,4 +1,5 @@
 #include "core/model.h"
+#include "logs.h"
 
 Mesh* Model::LoadFromFile(const std::string& filePath, const char* vertShader, const char* fragShader, const char* texturePath, GLenum format, Camera* camera, glm::vec3 position, glm::vec3 size)
 {
@@ -7,7 +8,7 @@ Mesh* Model::LoadFromFile(const std::string& filePath, const char* vertShader, c
 
 	if (!scene || !scene->HasMeshes())
 	{
-		//Log(error, ("Assimp Failed To Load Model: " + filePath).c_str());
+		Log(error, ("Assimp Failed To Load Model: " + filePath).c_str());
 		return nullptr;
 	}
 
@@ -23,7 +24,7 @@ Mesh* Model::LoadFromFile(const std::string& filePath, const char* vertShader, c
 		{
 			Vertex vertex;
 			vertex.position = { mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z };
-			
+
 			if (mesh->HasNormals())
 				vertex.color = { mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z };
 			else
@@ -53,10 +54,10 @@ Mesh* Model::LoadFromFile(const std::string& filePath, const char* vertShader, c
 	return meshes.empty() ? nullptr : meshes[0];
 }
 
-void Model::Draw()
+void Model::Draw(const Lighting& light)
 {
 	for (auto mesh : meshes)
-		mesh->Draw();
+		mesh->Draw(light);
 }
 
 void Model::Shutdown()

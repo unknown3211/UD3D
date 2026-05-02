@@ -1,4 +1,5 @@
 #include "core/mesh.h"
+#include <cstddef>
 #include <iostream>
 #include <string>
 
@@ -20,6 +21,7 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indic
 	}
 
 	GLsizei stride = sizeof(Vertex);
+	
 	vao->LinkAttrib(*vbo, 0, 3, GL_FLOAT, stride, (void*)0);
 	vao->LinkAttrib(*vbo, 1, 3, GL_FLOAT, stride, (void*)(3 * sizeof(float)));
 	vao->LinkAttrib(*vbo, 2, 2, GL_FLOAT, stride, (void*)(6 * sizeof(float)));
@@ -30,22 +32,28 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<GLuint>& indic
 
 Mesh::~Mesh() = default;
 
-void Mesh::Draw()
+void Mesh::Draw(const Lighting& light)
 {
 	shader.Bind();
 
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), m_pos) * glm::scale(glm::mat4(1.0f), m_size);
+	
 	shader.SetMat4("model", model);
 	shader.SetMat4("projection", camera->GetProjectionMatrix());
 	shader.SetMat4("view", camera->GetViewMatrix());
 
+	shader.SetVec3("lightPos", light.getPosition());
+	shader.SetVec4("lightColor", light.getColor());
+
 	if (texture) {
-		texture->texUnit(shader, "tex0", 0);
 		texture->Bind();
+		texture->texUnit(shader, "tex0", 0);
 	}
 
 	vao->Bind();
 	ebo->Bind();
+
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, nullptr);
+	
 	vao->Unbind();
 }

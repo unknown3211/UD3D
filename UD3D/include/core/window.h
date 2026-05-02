@@ -12,6 +12,7 @@ struct WindowDetails
 	uint32_t s_height;
 	bool vSync;
 	bool dev;
+	bool editor;
 };
 
 class Window {
