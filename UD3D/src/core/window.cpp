@@ -2,10 +2,29 @@
 #include "utils/gl_errors.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <stdio.h>
 
 void Window::Start(void(*start)())
 {
     start();
+    printf("Loaded OpenGL %s\n", glGetString(GL_VERSION));
+}
+
+void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    Window* instance = (Window*)(glfwGetWindowUserPointer(window));
+    if (!instance) 
+        return;
+
+    auto& inputManager = instance->getInputManager();
+    if (action == GLFW_PRESS)
+    {
+        inputManager.setKeyPressed(key, true);
+    }
+    else if (action == GLFW_RELEASE)
+    {
+        inputManager.setKeyPressed(key, false);
+    }
 }
 
 void Window::CreateWindow(const WindowDetails& details)
@@ -37,8 +56,11 @@ void Window::CreateWindow(const WindowDetails& details)
         glfwTerminate();
         return;
     }
+    
+    glfwSetWindowUserPointer(window, this);
+    glfwSetKeyCallback(window, keyCallback);
     glfwMakeContextCurrent(window);
-
+    
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
        // Log(error, "Failed To Load GLAD");

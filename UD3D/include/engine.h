@@ -16,6 +16,8 @@
 #include "managers/scene_manager.h"
 #include "managers/config_manager.h"
 #include "managers/ui_manager.h"
+#include "managers/input/input_keycodes.h"
+#include "managers/input/input_manager.h"
 
 #include "scripting/lua/lua_scripting.h"
 #include "scripting/lua/lua_functions.h"
