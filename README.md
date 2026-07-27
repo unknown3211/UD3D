@@ -18,14 +18,18 @@ UnKnownDevelopment C++ OpenGL 3D Framework
 <br>
 [IMGUI]: Editor
 <br>
-[ASSIMP]: Model Loading
+[ASSIMP]: Model Loading & Animations
+<br>
+[BOX3D]: Physics
 
 [Features]:
 * Window Creation
 * Camera Creation
 * Default Shape Creation
-* Model Loading With Assimp
+* Model Loading & Basic Animation System With Assimp
 * Lua Scripting -> OnStart, OnUpdate, OnShutdown Currently
 * Textures
 * Audio System
 * Scene Manager, Config Manager, UI Manager For Orginization
+* Physics System Using Box3D
+* Default FPS Controller For Easily Creating First Person Character Systems
