@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.28)
 
 project(UD3D)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -15,12 +15,12 @@ add_library(${PROJECT_NAME} STATIC ${MY_HEADERS} ${MY_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-
-set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
 set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_NO_EXCEPTIONS ON CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_STATIC_LIB ON CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_ZLIB ON CACHE BOOL "" FORCE)
+set(ASSIMP_INJECT_DEBUG_POSTFIX OFF CACHE BOOL "" FORCE)
+set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
+set(ALSOFT_UTILS OFF CACHE BOOL "" FORCE)
+set(ALSOFT_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(ALSOFT_INSTALL OFF CACHE BOOL "" FORCE)
 
 set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF CACHE BOOL "" FORCE)
 
@@ -67,6 +67,7 @@ add_subdirectory(libs/freetype)
 add_subdirectory(libs/lua)
 add_subdirectory(libs/imgui-docking)
 add_subdirectory(libs/SimpleLogs)
+add_subdirectory(libs/box3d)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC 
   glad   
@@ -83,4 +84,5 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
   imgui
   SimpleLogs
   pugixml
+  box3d::box3d
 )

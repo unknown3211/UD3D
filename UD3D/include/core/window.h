@@ -28,8 +28,8 @@ public:
 	void SetBackgroundColor(const Color& color);
 	void ResizeWindow(GLFWwindow* window);
 
-        static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-	InputManager& getInputManager() { return m_inputManager; }      
+	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	InputManager& getInputManager() { return m_inputManager; }
 
 	double GetWindowUpTime();
 
@@ -42,5 +42,5 @@ private:
 	GLFWmonitor* monitor = nullptr;
 	const GLFWvidmode* videoMode = nullptr;
 
-        InputManager m_inputManager;
+	InputManager m_inputManager;
 };

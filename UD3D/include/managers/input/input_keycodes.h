@@ -1,7 +1,5 @@
 #pragma once
 
-// credit: https://github.com/livinamuk/Hell2022/blob/main/Hell/src/Core/keycodes.h
-
 #define UD_KEY_SPACE              32
 #define UD_KEY_APOSTROPHE         39  /* ' */
 #define UD_KEY_COMMA              44  /* , */

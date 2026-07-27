@@ -1,6 +1,8 @@
 #include "audio/sound_effects_lib.h"
 #include <sndfile.h>
 #include <inttypes.h>
+#include <climits>
+#include <cstdlib>
 #include <AL\alext.h>
 
 SoundEffectsLibrary* SoundEffectsLibrary::Get()

@@ -12,12 +12,17 @@
 
 #include "cameras/camera.h"
 #include "cameras/free_cam.h"
+#include "cameras/fps_controller.h"
 
 #include "managers/scene_manager.h"
 #include "managers/config_manager.h"
 #include "managers/ui_manager.h"
 #include "managers/input/input_keycodes.h"
 #include "managers/input/input_manager.h"
+
+#include "physics/physics_system.h"
+#include "animation/animation.h"
+#include "animation/animator.h"
 
 #include "scripting/lua/lua_scripting.h"
 #include "scripting/lua/lua_functions.h"

@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <vector>
 #include <string>
+#include <memory>
 #include "core/shaders.h"
 #include "cameras/camera.h"
 #include "globals/global_structs.h"

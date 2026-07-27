@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<element>
+		<child>Hello, World !</child>
+		<child2 attribute="example">Hello, World again !</child2>
+	</element>
+</root>

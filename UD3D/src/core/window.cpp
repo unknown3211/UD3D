@@ -33,7 +33,6 @@ void Window::CreateWindow(const WindowDetails& details)
 
     if (!glfwInit())
     {
-        //Log(error, "Failed To Initialize GLFW");
         return;
     }
 
@@ -52,18 +51,16 @@ void Window::CreateWindow(const WindowDetails& details)
     window = glfwCreateWindow(wd.s_width, wd.s_height, wd.title.c_str(), NULL, NULL); // do monitor instead of first NULL if want fullscreen
     if (window == NULL)
     {
-        //Log(error, "Failed To Initialize GLFW Window");
         glfwTerminate();
         return;
     }
-    
+
     glfwSetWindowUserPointer(window, this);
     glfwSetKeyCallback(window, keyCallback);
     glfwMakeContextCurrent(window);
-    
+
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-       // Log(error, "Failed To Load GLAD");
         glfwDestroyWindow(window);
         glfwTerminate();
         return;
@@ -73,6 +70,8 @@ void Window::CreateWindow(const WindowDetails& details)
         enableReportGlErrors();
 
     glViewport(0, 0, details.s_width, details.s_height);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 
     bgColor = { 74.f, 120.f, 139.f, 255.f }; // light blue
     SetBackgroundColor(bgColor);

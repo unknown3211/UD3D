@@ -1,7 +1,13 @@
 #pragma once
 
 #define _USE_MATH_DEFINES
+#include <cmath>
 #include <math.h>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846f
+#endif
+
 #include "globals/global_types.h"
 #include "globals/global_structs.h"
 #include <iostream>
